@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
 using UnityEditor;
+using Unity.VisualScripting;
 
 public class WorldManager : MonoBehaviour
 {
@@ -131,6 +132,8 @@ public class WorldManager : MonoBehaviour
         if (savingDataProcessing.CheckFileExists())
         {
             DeleteSaveFile(SaveFiles.saveFile1);
+            DeleteSaveFile(SaveFiles.saveFile3);
+            DeleteSaveFile(SaveFiles.saveFile2);
             CreateSaveFile(SaveFiles.saveFile1);
             SaveLevel();
             return;
@@ -139,19 +142,29 @@ public class WorldManager : MonoBehaviour
         savingDataProcessing.nameFile = generateFileName(SaveFiles.saveFile2);// если есть второй то сохранять в третий
         if (savingDataProcessing.CheckFileExists())
         {
-            DeleteSaveFile(SaveFiles.saveFile3);
-            CreateSaveFile(SaveFiles.saveFile3);
-            SaveLevel();
-            return;
+            savingDataProcessing.nameFile = generateFileName(SaveFiles.saveFile3);
+            if (savingDataProcessing.CheckFileExists())
+            {
+                DeleteSaveFile(SaveFiles.saveFile3);
+                DeleteSaveFile(SaveFiles.saveFile2);
+                CreateSaveFile(SaveFiles.saveFile3);
+                SaveLevel();
+                return;
+            }
         }
 
         savingDataProcessing.nameFile = generateFileName(SaveFiles.saveFile1);// если есть первый то сохранять во второй
         if (savingDataProcessing.CheckFileExists())
         {
-            DeleteSaveFile(SaveFiles.saveFile2);
-            CreateSaveFile(SaveFiles.saveFile2);
-            SaveLevel();
-            return;
+            savingDataProcessing.nameFile = generateFileName(SaveFiles.saveFile2);
+            if (savingDataProcessing.CheckFileExists())
+            {
+                DeleteSaveFile(SaveFiles.saveFile2);
+                DeleteSaveFile(SaveFiles.saveFile1);
+                CreateSaveFile(SaveFiles.saveFile2);
+                SaveLevel();
+                return;
+            }
         }
 
 
