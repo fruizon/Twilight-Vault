@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 844599180476257094}
   - component: {fileID: 1726033830293834738}
   - component: {fileID: 313924084757766340}
+  - component: {fileID: 1709216356762710958}
   m_Layer: 0
   m_Name: 9-Sliced
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1709216356762710958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358874005100989479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a20536e95d9b4543a09a68e01f9d9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capsuleCollider2d: {fileID: 8117860566756100899}
 --- !u!1 &7766034908790698609
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +205,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -279,12 +293,10 @@ MonoBehaviour:
   transformGroundCheck: {fileID: 8896868423103437226}
   horizontal: 0
   moveAmount: 0
-  speed: 4
+  speed: 4.5
   forceRoll: 300
-  acceleration: 20
-  decelerarion: 4
-  forceJump: 250
-  forceEirMove: 2
+  forceJump: 5.5
+  smoothTime: 0.05
 --- !u!114 &8285901926121493594
 MonoBehaviour:
   m_ObjectHideFlags: 0

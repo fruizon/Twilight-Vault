@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter3.unity
     guid: 89f02d51f1bc1054884202907a7d2249
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/DebugMenu.unity
     guid: 4cdaeed98ae77474bb9a7c8335eceec7
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/DebugScene.unity
     guid: 1da3df38a7290b5479882e5407e3250b
   m_configObjects: {}

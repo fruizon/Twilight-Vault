@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : CharacterMovement
 {
@@ -13,13 +14,11 @@ public class PlayerMovement : CharacterMovement
 
     public float speed = 2;
     public float forceRoll = 300;
-    [SerializeField] private float acceleration = 4;
-    [SerializeField] private float decelerarion = 4;
-    public float forceJump = 3;
-    [SerializeField] private float forceEirMove = 2;
-
+    public float forceJump = 10;
     private Vector2 vector2;
     private Vector2 playerVelocity;
+
+    public float smoothTime = 0.05f;
 
 
     protected override void Awake()
@@ -35,17 +34,11 @@ public class PlayerMovement : CharacterMovement
             return;
         }
         GetMovementValues();
-        if (!playerManager.isGround) 
-        {
-            playerManager._rigidbody.AddForce(new Vector2(horizontal * speed * forceEirMove * Time.deltaTime, 0), ForceMode2D.Impulse);
 
-        }
-        else 
-        {
-            Vector2 targetPointVector2 = vector2 * speed;
-            playerVelocity = Vector2.MoveTowards(playerManager._rigidbody.velocity, targetPointVector2, (vector2.magnitude > 0 ? acceleration : decelerarion) * Time.deltaTime);
-            playerManager._rigidbody.velocity = playerVelocity;
-        }
+        
+        Vector2 targetVelocity = new Vector2(horizontal * speed, playerManager._rigidbody.velocity.y);
+        playerManager._rigidbody.velocity = Vector2.SmoothDamp(playerManager._rigidbody.velocity, targetVelocity, ref targetVelocity, smoothTime);
+        
 
     }
 
@@ -55,15 +48,21 @@ public class PlayerMovement : CharacterMovement
         {
             return;
         }
-        
-        playerManager._rigidbody.AddForce(new Vector2(0, forceJump), ForceMode2D.Force);
+
+        //playerManager._rigidbody.AddForce(new Vector2(0, forceJump), ForceMode2D.Force);
+        playerManager._rigidbody.velocity = new Vector2(playerManager._rigidbody.velocity.x, forceJump);
     }
 
     public void Roll()
     {
-        //roll
+        if (!playerManager.isGround)
+        {
+            return;
+        }
+
         playerManager._rigidbody.AddForce(new Vector2(forceRoll * playerManager.gameObject.transform.localScale.x, 0), ForceMode2D.Force);
     }
+
 
     public void Rotate(bool side)
     {

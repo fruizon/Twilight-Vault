@@ -63,6 +63,10 @@ public class WorldManager : MonoBehaviour
             yield return null;
         }
     }
+    public void setSpawnPosPlayer(Vector2 pos)
+    {
+        playerManager.transform.position = pos;
+    }
 
     public string generateFileName(SaveFiles saveFileNames)
     {
