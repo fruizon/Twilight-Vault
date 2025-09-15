@@ -12,6 +12,7 @@ public class CharacterManager : MonoBehaviour
     public bool canMove = true;
     public bool canJump = true;
     public bool canRoll = true;
+    public bool continueRoll = false;
     public Rigidbody2D _rigidbody;
     public Animator animator;
 

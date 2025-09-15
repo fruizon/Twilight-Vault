@@ -18,6 +18,9 @@ public class PlayerMovement : CharacterMovement
     private Vector2 vector2;
     private Vector2 playerVelocity;
 
+    public float radiusCheckCeiling = 0.1f;
+    public Transform transformCeilingCheck;
+
     public float smoothTime = 0.05f;
 
 
@@ -61,6 +64,13 @@ public class PlayerMovement : CharacterMovement
         }
 
         playerManager._rigidbody.AddForce(new Vector2(forceRoll * playerManager.gameObject.transform.localScale.x, 0), ForceMode2D.Force);
+    }
+
+    public void ContinueRoll()
+    {
+        if (!playerManager.continueRoll) return;
+        Roll();
+        playerManager.playerAnimations.TargetAnimation("roll", false, false);
     }
 
 

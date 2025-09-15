@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 844599180476257094}
   - component: {fileID: 1726033830293834738}
   - component: {fileID: 313924084757766340}
-  - component: {fileID: 1709216356762710958}
+  - component: {fileID: 1805964905554216977}
   m_Layer: 0
   m_Name: 9-Sliced
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1709216356762710958
+--- !u!114 &1805964905554216977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3358874005100989479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a20536e95d9b4543a09a68e01f9d9fb, type: 3}
+  m_Script: {fileID: 11500000, guid: a57cde34bbf9f9f49aebb52cc82d1983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capsuleCollider2d: {fileID: 8117860566756100899}
+  playerManager: {fileID: 0}
 --- !u!1 &7766034908790698609
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   canMove: 1
   canJump: 1
   canRoll: 1
+  continueRoll: 0
   _rigidbody: {fileID: 0}
   animator: {fileID: 0}
   playerMovement: {fileID: 0}
