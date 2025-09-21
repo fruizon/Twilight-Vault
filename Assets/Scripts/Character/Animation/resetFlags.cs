@@ -7,6 +7,7 @@ public class resetFlags : StateMachineBehaviour
     private CharacterManager characterManager;
     private float currentVelocityX;
     private float currentVelocityY;
+    private rollController rollController;
 
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -15,7 +16,11 @@ public class resetFlags : StateMachineBehaviour
         {
             characterManager = animator.GetComponentInParent<CharacterManager>();
         }
-
+        if (rollController is null)
+        {
+            rollController = animator.GetComponent<rollController>();
+        }
+        rollController.setColliderToDefault();
         characterManager.canJump = true;
         characterManager.isGround = true;
         characterManager.canMove = true;

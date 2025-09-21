@@ -29,6 +29,7 @@ public class CharacterManager : MonoBehaviour
     protected virtual void Update()
     {
         animator.SetBool("isGround", isGround);
+        animator.SetBool("continueRoll", continueRoll);
     }
 
     protected virtual void LateUpdate()

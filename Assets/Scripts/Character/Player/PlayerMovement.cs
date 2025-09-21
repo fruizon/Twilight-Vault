@@ -15,11 +15,10 @@ public class PlayerMovement : CharacterMovement
     public float speed = 2;
     public float forceRoll = 300;
     public float forceJump = 10;
+    public bool isRight = true;
     private Vector2 vector2;
     private Vector2 playerVelocity;
 
-    public float radiusCheckCeiling = 0.1f;
-    public Transform transformCeilingCheck;
 
     public float smoothTime = 0.05f;
 
@@ -62,15 +61,30 @@ public class PlayerMovement : CharacterMovement
         {
             return;
         }
-
-        playerManager._rigidbody.AddForce(new Vector2(forceRoll * playerManager.gameObject.transform.localScale.x, 0), ForceMode2D.Force);
+        if (playerManager.continueRoll)
+        {
+            if (isRight)
+            {
+                playerManager._rigidbody.velocity = new Vector2(6, playerManager._rigidbody.velocity.y);
+            }
+            else
+            {
+                playerManager._rigidbody.velocity = new Vector2(-6, playerManager._rigidbody.velocity.y);
+            }
+        }
+        else
+        {
+            playerManager._rigidbody.AddForce(new Vector2(forceRoll * playerManager.gameObject.transform.localScale.x, 0), ForceMode2D.Force);
+            playerManager._rigidbody.velocity = Vector2.zero;
+        }
+        Debug.Log(playerManager._rigidbody.velocity.x);
     }
 
     public void ContinueRoll()
     {
         if (!playerManager.continueRoll) return;
         Roll();
-        playerManager.playerAnimations.TargetAnimation("roll", false, false);
+        Debug.Log("CONTINUE ROLL");
     }
 
 
@@ -80,10 +94,12 @@ public class PlayerMovement : CharacterMovement
         if (side)
         {
             playerManager.gameObject.transform.localScale = Vector3.one;
+            isRight = true;
         }
         else
         {
             playerManager.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            isRight = false;
         }
     }
 

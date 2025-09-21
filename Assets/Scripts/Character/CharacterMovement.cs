@@ -8,8 +8,10 @@ public class CharacterMovement : MonoBehaviour
     private CharacterManager characterManager;
     public LayerMask layerMaskGround;
     public float groundCheckRadius = 0.1f;
+    public float continueRollCheckRadius = 0.1f;
     protected float timeInFly;
     public Transform transformGroundCheck;
+    public Transform transformContinueRollCheck;
 
     protected virtual void Awake() 
     {
@@ -19,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void Update()
     {
         checkGround();
+        checkContinueRoll();
         if (!characterManager.isGround)
         {
             timeInFly += Time.deltaTime;          
@@ -30,15 +33,21 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    public bool checkGround() 
+    public bool checkGround()
     {
         characterManager.isGround = Physics2D.OverlapCircle(transformGroundCheck.position, groundCheckRadius, layerMaskGround);
         return characterManager.isGround;
+    }
+    public bool checkContinueRoll()
+    {
+        characterManager.continueRoll = Physics2D.OverlapCircle(transformContinueRollCheck.position, continueRollCheckRadius, layerMaskGround);
+        return characterManager.continueRoll;
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transformGroundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(transformContinueRollCheck.position, continueRollCheckRadius);
     }
 
 }

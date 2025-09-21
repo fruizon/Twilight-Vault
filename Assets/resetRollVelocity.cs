@@ -12,7 +12,7 @@ public class resetRollVelocity : StateMachineBehaviour
             characterManager = animator.GetComponentInParent<CharacterManager>();
         }
 
-        characterManager._rigidbody.velocity = Vector2.zero;
+        //characterManager._rigidbody.velocity = Vector2.zero;
 
 
     }

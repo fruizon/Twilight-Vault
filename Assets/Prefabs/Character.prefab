@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1290340666410780314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3754606823359242495}
+  m_Layer: 0
+  m_Name: ContinueRollCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3754606823359242495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290340666410780314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.069, y: 0.728, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2513277174665798983}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3358874005100989479
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +195,6 @@ GameObject:
   - component: {fileID: 8117860566756100899}
   - component: {fileID: 4160145652980270469}
   - component: {fileID: 2352174085392458234}
-  - component: {fileID: 8285901926121493594}
   - component: {fileID: 3317644508087682390}
   m_Layer: 0
   m_Name: Character
@@ -188,6 +218,7 @@ Transform:
   m_Children:
   - {fileID: 844599180476257094}
   - {fileID: 8896868423103437226}
+  - {fileID: 3754606823359242495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6874730925508256519
@@ -291,26 +322,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckRadius: 0.2
+  continueRollCheckRadius: 0.19
   transformGroundCheck: {fileID: 8896868423103437226}
+  transformContinueRollCheck: {fileID: 3754606823359242495}
   horizontal: 0
   moveAmount: 0
   speed: 4.5
   forceRoll: 300
   forceJump: 5.5
   smoothTime: 0.05
---- !u!114 &8285901926121493594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781869643176241432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0010162a3b44f48ba7688771d8fca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterManager: {fileID: 0}
 --- !u!114 &3317644508087682390
 MonoBehaviour:
   m_ObjectHideFlags: 0

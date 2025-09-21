@@ -18,6 +18,7 @@ public class rollController : MonoBehaviour
     public void continueRoll()
     {
         playerManager.playerMovement.ContinueRoll();
+        Debug.Log("Continue Roll");
     }
 
     public void setColliderToSmall()
