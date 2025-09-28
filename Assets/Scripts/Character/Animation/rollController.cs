@@ -7,6 +7,7 @@ public class rollController : MonoBehaviour
 {
     public PlayerManager playerManager;
     private CapsuleCollider2D _capsuleCollider2D;
+    //test
 
 
     private void Start()
