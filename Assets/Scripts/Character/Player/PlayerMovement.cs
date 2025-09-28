@@ -90,7 +90,10 @@ public class PlayerMovement : CharacterMovement
 
     public void Rotate(bool side)
     {
-        if (!playerManager.canRoll) return;
+        // Запретить флип во время кувырка
+        if (playerManager.animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
+            return;
+
         if (side)
         {
             playerManager.gameObject.transform.localScale = Vector3.one;

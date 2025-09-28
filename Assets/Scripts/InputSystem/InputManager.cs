@@ -21,6 +21,9 @@ public class InputManager : MonoBehaviour
 
     public float moveResult;
 
+    private bool rightPressed;
+    private bool leftPressed;
+
     private void Awake()
     {
         if (Instance == null) 
@@ -51,8 +54,10 @@ public class InputManager : MonoBehaviour
             playerInput = new PlayerInput();
             playerInput.PlayerMovement.Movement.performed += i => vector2 = i.ReadValue<Vector2>();
             playerInput.PlayerMovement.Jump.performed += i => isJump = true;
-            playerInput.PlayerMovement.RotateRight.performed += i => isRight = true;
-            playerInput.PlayerMovement.RotateLeft.performed += i => isRight = false;
+            playerInput.PlayerMovement.RotateRight.started += i => rightPressed = true;
+            playerInput.PlayerMovement.RotateRight.canceled += i => rightPressed = false;
+            playerInput.PlayerMovement.RotateLeft.started += i => leftPressed = true;
+            playerInput.PlayerMovement.RotateLeft.canceled += i => leftPressed = false;
             playerInput.PlayerMovement.Roll.performed += i => isRoll = true;
         }
         playerInput.Enable();
@@ -137,7 +142,12 @@ public class InputManager : MonoBehaviour
 
     private void Rotate() 
     {
-        playerManager.playerMovement.Rotate(isRight);
+        // Если обе нажаты — приоритет последней нажатой или по оси движения
+        if (rightPressed && !leftPressed)
+            playerManager.playerMovement.Rotate(true);
+        else if (!rightPressed && leftPressed)
+            playerManager.playerMovement.Rotate(false);
+        // если обе отпущены — не менять направление
     }
 
     void OnDestroy()
